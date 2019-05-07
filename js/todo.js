@@ -82,7 +82,7 @@ input.addEventListener('keypress', function (event) {
     json_to_send = JSON.stringify(json_to_send);
     $.ajax({
       //url: 'http://localhost:3000/todos',
-      url: 'https://tuapp.herokuapp.com/todos',
+      url: 'https://examenfinal818821.herokuapp.com/todos',
       headers: {
           'Content-Type':'application/json',
           'Authorization': 'Bearer ' + token
