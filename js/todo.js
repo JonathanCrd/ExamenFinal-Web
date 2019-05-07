@@ -1,7 +1,9 @@
 var token = localStorage.getItem('token');
+console.log(token);
 if (token) {
   token = token.replace(/^"(.*)"$/, '$1'); // Remove quotes from token start/end.
 }
+console.log(token);
 
 
 var todos = document.querySelectorAll("input[type=checkbox]");
@@ -33,6 +35,7 @@ function updateTodo(id, completed) {
 
 
 function loadTodos() {
+  console.log(token);
   $.ajax({
     //url: 'http://localhost:3000/todos',
     url: 'https://examenfinal818821.herokuapp.com/todos',
@@ -49,7 +52,7 @@ function loadTodos() {
         // aqui va su código para agregar los elementos de la lista
         console.log(data[i].description)
         // algo asi:
-        // addTodo(data[i]._id, data[i].description, data[i].completed)
+        addTodo(data[i]._id, data[i].description, data[i].completed)
       }
     },
     error: function(error_msg) {
@@ -100,5 +103,9 @@ input.addEventListener('keypress', function (event) {
 })
 
 function addTodo(id, todoText, completed) {
-  
+  if(completed){
+    $('#unfinished-list').append('<li><input type="checkbox" name="todo" value="'+id+'" checked><span>'+todoText+'</span></li>')
+  }else{
+    $('#unfinished-list').append('<li><input type="checkbox" name="todo" value="'+id+'"><span>'+todoText+'</span></li>')
+  }
 }
